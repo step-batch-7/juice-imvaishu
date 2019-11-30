@@ -18,8 +18,8 @@ describe("getTransactionDetails", function() {
     date = date.toJSON();
     const actualValue = getTransactionDetails(usrArgs, path, date);
     const expectedValue =
-      "Transaction Recorded\n" +
-      "Employee ID , Beverage , Quantity , date \n" +
+      "Transaction Recorded:\n" +
+      "Employee ID,Beverage,Quantity,Date\n" +
       "11111,orange,1," +
       date;
     assert.deepStrictEqual(actualValue, expectedValue);
