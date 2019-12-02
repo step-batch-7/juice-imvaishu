@@ -33,6 +33,12 @@ const isEmpIdMatched = function(empId) {
   };
 };
 
+const isBeverageMatched = function(beverage) {
+  return function(transaction) {
+    return transaction.beverage === beverage;
+  };
+};
+
 const countJuice = function(totalJuice, transaction) {
   return totalJuice + +transaction.qty;
 };
@@ -49,4 +55,5 @@ exports.writeTransactionData = writeTransactionData;
 exports.changeObjectToString = changeObjectToString;
 exports.isEmpIdMatched = isEmpIdMatched;
 exports.isDateMatched = isDateMatched;
+exports.isBeverageMatched = isBeverageMatched;
 exports.countJuice = countJuice;

@@ -64,7 +64,7 @@ describe("changeObjectToString ", function() {
 
 describe("isEmpIdMatched", function() {
   it("should return true if empId is matched", function() {
-    empId = 11111;
+    const empId = 11111;
     transaction = {
       empId: 11111,
       beverage: "orange",
@@ -76,7 +76,7 @@ describe("isEmpIdMatched", function() {
     assert.strictEqual(actualValue, expectedValue);
   });
   it("should return false if empId is not matched", function() {
-    empId = 11111;
+    const empId = 11111;
     transaction = {
       empId: 11121,
       beverage: "orange",
@@ -106,7 +106,7 @@ describe("countJuice", function() {
 
 describe("isDateIdMatched", function() {
   it("should return true if date is matched", function() {
-    date = "2019-12-02";
+    const date = "2019-12-02";
     transaction = {
       empId: 11111,
       beverage: "orange",
@@ -118,7 +118,7 @@ describe("isDateIdMatched", function() {
     assert.strictEqual(actualValue, expectedValue);
   });
   it("should return true if date is not matched", function() {
-    date = "2019-12-03";
+    const date = "2019-12-03";
     transaction = {
       empId: 11111,
       beverage: "orange",
@@ -126,6 +126,34 @@ describe("isDateIdMatched", function() {
       date: "2019-12-02T09:06:34.253Z"
     };
     const actualValue = utils.isDateMatched(date)(transaction);
+    const expectedValue = false;
+    assert.strictEqual(actualValue, expectedValue);
+  });
+});
+
+describe("isBeveragedMatched", function() {
+  it("should return true if beverage is matched", function() {
+    let beverage = "orange";
+    transaction = {
+      empId: 11111,
+      beverage: "orange",
+      qty: 1,
+      date: "2019-11-30T15:48:32.840Z"
+    };
+    const actualValue = utils.isBeverageMatched(beverage)(transaction);
+    const expectedValue = true;
+    assert.strictEqual(actualValue, expectedValue);
+  });
+
+  it("should return false if beverage is not matched", function() {
+    const beverage = "pineapple";
+    transaction = {
+      empId: 11121,
+      beverage: "orange",
+      qty: 1,
+      date: "2019-11-30T15:48:32.840Z"
+    };
+    const actualValue = utils.isBeverageMatched(beverage)(transaction);
     const expectedValue = false;
     assert.strictEqual(actualValue, expectedValue);
   });
