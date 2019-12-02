@@ -4,24 +4,30 @@ const query = require("./queryOfRecords.js").queryOfRecords;
 const createStructure = require("./createStructure").createStructure;
 const fs = require("fs");
 
-const getTransactionDetails = function(usrArgs, path, date) {
+const getTransactionDetails = function(
+  usrArgs,
+  path,
+  reader,
+  encoder,
+  date,
+  writer
+) {
   let transactionDetails = readTransactionData(
     path,
-    fs.readFileSync,
-    "utf-8",
+    reader,
+    encoder,
     fs.existsSync
   );
-
   const operations = { "--save": save, "--query": query };
   const operation = usrArgs[0];
+  const performOperation = operations[operation];
   if (operation === "--save") {
-    const performOperation = operations[operation];
     let details = createStructure(usrArgs, date);
     transactionDetails.push(details);
-    return performOperation(transactionDetails, path, details, usrArgs);
+    return performOperation(transactionDetails, path, writer, encoder, details);
   }
 
-  return query(transactionDetails, usrArgs);
+  return performOperation(transactionDetails, usrArgs);
 };
 
 exports.getTransactionDetails = getTransactionDetails;
