@@ -37,9 +37,16 @@ const countJuice = function(totalJuice, transaction) {
   return totalJuice + +transaction.qty;
 };
 
+const isDateMatched = function(date) {
+  return function(transaction) {
+    return transaction.date.slice(0, 10) === date;
+  };
+};
+
 exports.date = date;
 exports.readTransactionData = readTransactionData;
 exports.writeTransactionData = writeTransactionData;
 exports.changeObjectToString = changeObjectToString;
 exports.isEmpIdMatched = isEmpIdMatched;
+exports.isDateMatched = isDateMatched;
 exports.countJuice = countJuice;

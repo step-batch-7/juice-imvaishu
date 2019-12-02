@@ -103,3 +103,30 @@ describe("countJuice", function() {
     assert.strictEqual(actualValue, expectedValue);
   });
 });
+
+describe("isDateIdMatched", function() {
+  it("should return true if date is matched", function() {
+    date = "2019-12-02";
+    transaction = {
+      empId: 11111,
+      beverage: "orange",
+      qty: 1,
+      date: "2019-12-02T09:06:34.253Z"
+    };
+    const actualValue = utils.isDateMatched(date)(transaction);
+    const expectedValue = true;
+    assert.strictEqual(actualValue, expectedValue);
+  });
+  it("should return true if date is not matched", function() {
+    date = "2019-12-03";
+    transaction = {
+      empId: 11111,
+      beverage: "orange",
+      qty: 1,
+      date: "2019-12-02T09:06:34.253Z"
+    };
+    const actualValue = utils.isDateMatched(date)(transaction);
+    const expectedValue = false;
+    assert.strictEqual(actualValue, expectedValue);
+  });
+});
