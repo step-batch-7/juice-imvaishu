@@ -15,7 +15,7 @@ describe("createStructure", function() {
     let date = "2019-11-30T15:48:32.840Z";
     const actualValue = createStructure(usrArgs, date);
     const expectedValue = {
-      empId: 11111,
+      empId: "11111",
       beverage: "orange",
       qty: 1,
       date: "2019-11-30T15:48:32.840Z"

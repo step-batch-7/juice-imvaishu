@@ -20,6 +20,26 @@ const writeTransactionData = function(path, writer, encoder, content) {
   writer(path, content, encoder);
 };
 
+const changeObjectToString = function(message, transaction) {
+  let transactionMessage = `${message}`;
+  transactionMessage += `${transaction.empId},${transaction.beverage},`;
+  transactionMessage += `${transaction.qty},${transaction.date}\n`;
+  return transactionMessage;
+};
+
+const isEmpIdMatched = function(empId) {
+  return function(transaction) {
+    return transaction.empId === empId;
+  };
+};
+
+const countJuice = function(totalJuice, transaction) {
+  return totalJuice + +transaction.qty;
+};
+
 exports.date = date;
 exports.readTransactionData = readTransactionData;
 exports.writeTransactionData = writeTransactionData;
+exports.changeObjectToString = changeObjectToString;
+exports.isEmpIdMatched = isEmpIdMatched;
+exports.countJuice = countJuice;

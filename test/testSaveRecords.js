@@ -5,7 +5,7 @@ describe("saveRecords", function() {
   it("sholud save transaction record for new employee", function() {
     let transactionDetails = [];
     let details = {
-      empId: "11111",
+      empId: 11111,
       beverage: "orange",
       qty: 1,
       date: "2019-11-30T15:48:32.840Z"
@@ -25,14 +25,14 @@ describe("saveRecords", function() {
   it("should save transaction of same employee", function() {
     let transactionDetails = [
       {
-        empId: "11111",
+        empId: 11111,
         beverage: "orange",
         qty: 1,
         date: "2019-11-30T15:48:32.840Z"
       }
     ];
     let details = {
-      empId: "11111",
+      empId: 11111,
       beverage: "orange",
       qty: 1,
       date: "2019-11-30T15:48:32.840Z"
@@ -51,20 +51,20 @@ describe("saveRecords", function() {
   it("should save transaction of new employee if old transaction recorded previously", function() {
     let transactionDetails = [
       {
-        empId: "11111",
+        empId: 11111,
         beverage: "orange",
         qty: 1,
         date: "2019-11-30T15:48:32.840Z"
       },
       {
-        empId: "11111",
+        empId: 11111,
         beverage: "orange",
         qty: 1,
         date: "2019-11-30T15:48:32.840Z"
       }
     ];
     let details = {
-      empId: "12345",
+      empId: 12345,
       beverage: "pineapple",
       qty: 1,
       date: "2019-11-30T15:48:32.840Z"

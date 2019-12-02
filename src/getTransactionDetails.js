@@ -11,17 +11,17 @@ const getTransactionDetails = function(usrArgs, path, date) {
     "utf-8",
     fs.existsSync
   );
-  // path, reader, encoder, doesExists
+
   const operations = { "--save": save, "--query": query };
   const operation = usrArgs[0];
   if (operation === "--save") {
     const performOperation = operations[operation];
     let details = createStructure(usrArgs, date);
     transactionDetails.push(details);
-    return performOperation(transactionDetails, path, details);
+    return performOperation(transactionDetails, path, details, usrArgs);
   }
 
-  return "not implemented yet";
+  return query(transactionDetails, usrArgs);
 };
 
 exports.getTransactionDetails = getTransactionDetails;
