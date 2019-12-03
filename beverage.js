@@ -1,18 +1,21 @@
-const getTransactionDetails = require("./src/getTransactionDetails.js")
-  .getTransactionDetails;
-const date = require("./src/utils.js").date;
-console.log("Anna Juice Ltd");
+const fs = require("fs");
+const { getTransactionDetails } = require("./src/getTransactionDetails.js");
+const { getRecordDataPath, getDate } = require("./src/config");
 
 const main = function() {
+  console.log("Anna Juice Ltd");
   const usrArgs = process.argv.slice(2);
-  let path = "./beverageTransactionsRecord.json";
+  const path = getRecordDataPath(process.env);
+  const date = getDate(process.env);
+
   let transactionRecord = getTransactionDetails(
     usrArgs,
     path,
     fs.readFileSync,
     "utf-8",
-    date(),
-    fs.writeFileSync
+    date,
+    fs.writeFileSync,
+    fs.existsSync
   );
   console.log(transactionRecord);
 };

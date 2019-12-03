@@ -1,11 +1,3 @@
-const fs = require("fs");
-
-const date = function() {
-  let date = new Date();
-  date = date.toJSON();
-  return date;
-};
-
 const readTransactionData = function(path, reader, encoder, doesExists) {
   if (doesExists(path)) {
     const consumptionData = reader(path, encoder);
@@ -49,7 +41,6 @@ const isDateMatched = function(date) {
   };
 };
 
-exports.date = date;
 exports.readTransactionData = readTransactionData;
 exports.writeTransactionData = writeTransactionData;
 exports.changeObjectToString = changeObjectToString;

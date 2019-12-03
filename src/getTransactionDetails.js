@@ -2,7 +2,6 @@ const readTransactionData = require("./utils").readTransactionData;
 const save = require("./saveRecords.js").saveRecords;
 const query = require("./queryOfRecords.js").queryOfRecords;
 const createStructure = require("./createStructure").createStructure;
-const fs = require("fs");
 
 const getTransactionDetails = function(
   usrArgs,
@@ -10,14 +9,16 @@ const getTransactionDetails = function(
   reader,
   encoder,
   date,
-  writer
+  writer,
+  doesExists
 ) {
   let transactionDetails = readTransactionData(
     path,
     reader,
     encoder,
-    fs.existsSync
+    doesExists
   );
+
   const operations = { "--save": save, "--query": query };
   const operation = usrArgs[0];
   const performOperation = operations[operation];

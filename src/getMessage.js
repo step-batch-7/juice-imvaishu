@@ -1,5 +1,5 @@
-const changeObjectToString = require("./utils").changeObjectToString;
-const countJuice = require("./utils").countJuice;
+const { changeObjectToString } = require("./utils");
+const { countJuice } = require("./utils");
 
 const getMessageForSave = function(details) {
   let { empId, beverage, qty, date } = details;

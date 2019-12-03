@@ -10,6 +10,7 @@ describe("readTransactionData", function() {
     };
 
     const doesExits = function(path) {
+      assert.strictEqual(path, "path");
       return true;
     };
 
