@@ -1,5 +1,6 @@
-const assert = require("assert");
-const saveRecords = require("../src/saveRecords").saveRecords;
+const chai = require("chai");
+const assert = chai.assert;
+const { saveRecords } = require("../src/saveRecords");
 
 describe("saveRecords", function() {
   it("sholud save transaction record for new employee", function() {
@@ -42,6 +43,7 @@ describe("saveRecords", function() {
       "Transaction Recorded:\n" +
       "Employee ID,Beverage,Quantity,Date\n" +
       "11111,orange,1,2019-11-30T15:48:32.840Z";
+
     assert.deepStrictEqual(actualValue, expectedValue);
     assert.strictEqual(calledTimes, 1);
   });
@@ -61,6 +63,7 @@ describe("saveRecords", function() {
         date: "2019-11-30T15:48:32.840Z"
       }
     ];
+
     let details = {
       empId: 11111,
       beverage: "orange",
@@ -72,6 +75,7 @@ describe("saveRecords", function() {
       '[{"empId":11111,"beverage":"orange","qty":1,"date":"2019-11-30T15:48:32.840Z"},';
     contentForMatch +=
       '{"empId":11111,"beverage":"orange","qty":1,"date":"2019-11-30T15:48:32.840Z"}]';
+
     let calledTimes = 0;
     const writer = function(path, content, encoder) {
       assert.strictEqual(path, "path");
@@ -93,6 +97,7 @@ describe("saveRecords", function() {
       "Transaction Recorded:\n" +
       "Employee ID,Beverage,Quantity,Date\n" +
       "11111,orange,1,2019-11-30T15:48:32.840Z";
+
     assert.deepStrictEqual(actualValue, expectedValue);
     assert.strictEqual(calledTimes, 1);
   });

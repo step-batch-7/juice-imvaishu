@@ -1,6 +1,6 @@
-const assert = require("assert");
-const getTransactionDetails = require("../src/getTransactionDetails.js")
-  .getTransactionDetails;
+const chai = require("chai");
+const assert = chai.assert;
+const { getTransactionDetails } = require("../src/getTransactionDetails.js");
 
 describe("getTransactionDetails", function() {
   it("should return message of transaction recorded if file contains empty array", function() {
@@ -13,6 +13,7 @@ describe("getTransactionDetails", function() {
       "--qty",
       "1"
     ];
+
     const reader = function(path, encoder) {
       assert.strictEqual(path, "path");
       assert.strictEqual(encoder, "utf-8");
@@ -46,11 +47,13 @@ describe("getTransactionDetails", function() {
       writer,
       doesExists
     );
+
     const expectedValue =
       "Transaction Recorded:\n" +
       "Employee ID,Beverage,Quantity,Date\n" +
       "11111,orange,1," +
       date;
+
     assert.deepStrictEqual(actualValue, expectedValue);
     assert.strictEqual(calledTimes, 1);
   });
@@ -65,11 +68,13 @@ describe("getTransactionDetails", function() {
       "--qty",
       "1"
     ];
+
     const reader = function(path, encoder) {
       assert.strictEqual(path, "path");
       assert.strictEqual(encoder, "utf-8");
       return '[{"empId":"25347","beverage":"pineapple","qty":5,"date":"2019-12-02T11:59:13.787Z"}]';
     };
+
     let calledTimes = 0;
     const writer = function(path, content, encoder) {
       assert.strictEqual(path, "path");
@@ -90,6 +95,7 @@ describe("getTransactionDetails", function() {
 
     let date = new Date();
     date = date.toJSON();
+
     const actualValue = getTransactionDetails(
       usrArgs,
       "path",
@@ -99,17 +105,20 @@ describe("getTransactionDetails", function() {
       writer,
       doesExists
     );
+
     const expectedValue =
       "Transaction Recorded:\n" +
       "Employee ID,Beverage,Quantity,Date\n" +
       "25347,pineapple,1," +
       date;
+
     assert.deepStrictEqual(actualValue, expectedValue);
     assert.strictEqual(calledTimes, 1);
   });
 
   it("should return query message of transaction based on employeeId", function() {
     const usrArgs = ["--query", "--empId", "25347"];
+
     const reader = function(path, encoder) {
       assert.strictEqual(path, "path");
       assert.strictEqual(encoder, "utf-8");

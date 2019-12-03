@@ -6,4 +6,5 @@ const createStructure = function(usrArgs, date) {
   table.date = date;
   return table;
 };
-exports.createStructure = createStructure;
+
+module.exports = { createStructure };

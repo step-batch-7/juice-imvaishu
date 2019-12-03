@@ -1,4 +1,5 @@
-const assert = require("assert");
+const chai = require("chai");
+const assert = chai.assert;
 const { queryOfRecords } = require("../src/queryOfRecords");
 
 describe("queryOfRecords", function() {
@@ -11,11 +12,15 @@ describe("queryOfRecords", function() {
         date: "2019-12-02T07:19:25.843Z"
       }
     ];
+
     const usrArgs = ["--query", "--empId", "25347"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "25347,pineapple,1,2019-12-02T07:19:25.843Z\n";
     expectedValue += "Total: 1 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -34,12 +39,16 @@ describe("queryOfRecords", function() {
         date: "2019-11-30T15:48:32.840Z"
       }
     ];
+
     const usrArgs = ["--query", "--empId", "11111"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
     expectedValue += "Total: 2 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -54,9 +63,12 @@ describe("queryOfRecords", function() {
     ];
 
     const usrArgs = ["--query", "--empId", "25346"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "Total: 0 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -69,11 +81,15 @@ describe("queryOfRecords", function() {
         date: "2019-12-02T07:19:25.843Z"
       }
     ];
+
     const usrArgs = ["--query", "--date", "2019-12-02"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "25347,pineapple,1,2019-12-02T07:19:25.843Z\n";
     expectedValue += "Total: 1 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -92,12 +108,16 @@ describe("queryOfRecords", function() {
         date: "2019-11-30T15:48:32.840Z"
       }
     ];
+
     const usrArgs = ["--query", "--date", "2019-11-30"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
     expectedValue += "Total: 2 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -112,9 +132,12 @@ describe("queryOfRecords", function() {
     ];
 
     const usrArgs = ["--query", "--date", "2019-12-03"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "Total: 0 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -133,11 +156,15 @@ describe("queryOfRecords", function() {
         date: "2019-12-03T07:19:25.843Z"
       }
     ];
+
     const usrArgs = ["--query", "--date", "2019-12-02", "--empId", "25347"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "25347,pineapple,1,2019-12-02T07:19:25.843Z\n";
     expectedValue += "Total: 1 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -156,12 +183,16 @@ describe("queryOfRecords", function() {
         date: "2019-12-02T07:19:25.843Z"
       }
     ];
+
     const usrArgs = ["--query", "--date", "2019-12-02", "--empId", "25347"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "25347,pineapple,1,2019-12-02T07:19:25.843Z\n";
     expectedValue += "25347,pineapple,1,2019-12-02T07:19:25.843Z\n";
     expectedValue += "Total: 2 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -176,9 +207,12 @@ describe("queryOfRecords", function() {
     ];
 
     const usrArgs = ["--query", "--date", "2019-12-03", "--empId", "25346"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "Total: 0 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -191,11 +225,15 @@ describe("queryOfRecords", function() {
         date: "2019-12-02T07:19:25.843Z"
       }
     ];
+
     const usrArgs = ["--query", "--beverage", "pineapple"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "25347,pineapple,1,2019-12-02T07:19:25.843Z\n";
     expectedValue += "Total: 1 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -214,12 +252,16 @@ describe("queryOfRecords", function() {
         date: "2019-11-30T15:48:32.840Z"
       }
     ];
+
     const usrArgs = ["--query", "--beverage", "orange"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
     expectedValue += "Total: 2 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -234,9 +276,12 @@ describe("queryOfRecords", function() {
     ];
 
     const usrArgs = ["--query", "--beverage", "apple"];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "Total: 0 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -249,6 +294,7 @@ describe("queryOfRecords", function() {
         date: "2019-12-02T07:19:25.843Z"
       }
     ];
+
     const usrArgs = [
       "--query",
       "--beverage",
@@ -258,10 +304,13 @@ describe("queryOfRecords", function() {
       "--date",
       "2019-12-02"
     ];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "25347,pineapple,1,2019-12-02T07:19:25.843Z\n";
     expectedValue += "Total: 1 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -280,6 +329,7 @@ describe("queryOfRecords", function() {
         date: "2019-11-30T15:48:32.840Z"
       }
     ];
+
     const usrArgs = [
       "--query",
       "--beverage",
@@ -289,11 +339,14 @@ describe("queryOfRecords", function() {
       "--date",
       "2019-11-30"
     ];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
     expectedValue += "Total: 2 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 
@@ -316,9 +369,12 @@ describe("queryOfRecords", function() {
       "--date",
       "2019-12-31"
     ];
+
     const actualValue = queryOfRecords(transactionDetails, usrArgs);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "Total: 0 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 });

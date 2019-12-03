@@ -19,5 +19,4 @@ const getMessageForQuery = function(giveEmpTransactions) {
   return message + "Total: " + totalJuice + " Juices";
 };
 
-exports.getMessageForSave = getMessageForSave;
-exports.getMessageForQuery = getMessageForQuery;
+module.exports = { getMessageForSave, getMessageForQuery };

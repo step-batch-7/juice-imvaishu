@@ -21,4 +21,4 @@ const queryOfRecords = function(transactionDetails, usrArgs) {
   return getMessageForQuery(giveEmpTransactions);
 };
 
-exports.queryOfRecords = queryOfRecords;
+module.exports = { queryOfRecords };

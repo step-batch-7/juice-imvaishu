@@ -1,7 +1,7 @@
-const readTransactionData = require("./utils").readTransactionData;
+const { readTransactionData } = require("./utils");
 const save = require("./saveRecords.js").saveRecords;
 const query = require("./queryOfRecords.js").queryOfRecords;
-const createStructure = require("./createStructure").createStructure;
+const { createStructure } = require("./createStructure");
 
 const getTransactionDetails = function(
   usrArgs,
@@ -31,4 +31,4 @@ const getTransactionDetails = function(
   return performOperation(transactionDetails, usrArgs);
 };
 
-exports.getTransactionDetails = getTransactionDetails;
+module.exports = { getTransactionDetails };

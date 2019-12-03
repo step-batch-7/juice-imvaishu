@@ -1,6 +1,5 @@
-const writeTransactionData = require("./utils").writeTransactionData;
-const getMessageForSave = require("./getMessage.js").getMessageForSave;
-const fs = require("fs");
+const { writeTransactionData } = require("./utils");
+const { getMessageForSave } = require("./getMessage.js");
 
 const saveRecords = function(
   transactionDetails,
@@ -13,4 +12,4 @@ const saveRecords = function(
   return getMessageForSave(details);
 };
 
-exports.saveRecords = saveRecords;
+module.exports = { saveRecords };

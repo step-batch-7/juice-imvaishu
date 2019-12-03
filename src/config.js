@@ -12,5 +12,4 @@ const getDate = function(env) {
   return env.NOW;
 };
 
-exports.getRecordDataPath = getRecordDataPath;
-exports.getDate = getDate;
+module.exports = { getRecordDataPath, getDate };

@@ -1,4 +1,5 @@
-const assert = require("assert");
+const chai = require("chai");
+const assert = chai.assert;
 const { getMessageForSave, getMessageForQuery } = require("../src/getMessage");
 
 describe("getMessageForSave", function() {
@@ -9,7 +10,9 @@ describe("getMessageForSave", function() {
       qty: 1,
       date: "2019-11-30T10:56:13.781Z"
     };
+
     const actualValue = getMessageForSave(details);
+
     let expectedValue = "Transaction Recorded:\n";
     expectedValue += "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "1111,orange,1,2019-11-30T10:56:13.781Z";
@@ -34,11 +37,14 @@ describe("getMessageForQuery", function() {
         date: "2019-11-30T15:48:32.840Z"
       }
     ];
+
     const actualValue = getMessageForQuery(giveEmpTransactions);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
     expectedValue += "Total: 2 Juices";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 });

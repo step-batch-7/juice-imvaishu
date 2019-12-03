@@ -1,4 +1,5 @@
-const assert = require("assert");
+const chai = require("chai");
+const assert = chai.assert;
 const utils = require("../src/utils");
 
 describe("readTransactionData", function() {
@@ -22,10 +23,12 @@ describe("readTransactionData", function() {
 
   it("should return empty if file does not exitsts and valid path passed", function() {
     const reader = function() {};
+
     const doesExits = function(path) {
       assert.strictEqual(path, "path");
       return false;
     };
+
     assert.deepStrictEqual(
       utils.readTransactionData("path", reader, "utf-8", doesExits),
       []
@@ -36,13 +39,16 @@ describe("readTransactionData", function() {
 describe("writeTransactionData", function() {
   it("should called one times and right path, encoder and content passed", function() {
     let calledTimes = 0;
+
     const writer = function(path, content, encoder) {
       assert.strictEqual(path, "path");
       assert.strictEqual(content, '{"empId":25275}');
       assert.strictEqual(encoder, "utf-8");
       calledTimes += 1;
     };
+
     utils.writeTransactionData("path", writer, "utf-8", { empId: 25275 });
+
     assert.strictEqual(calledTimes, 1);
   });
 });
@@ -50,15 +56,19 @@ describe("writeTransactionData", function() {
 describe("changeObjectToString ", function() {
   it("should change object to string", function() {
     const message = "Employee ID,Beverage,Quantity,Date\n";
+
     const transaction = {
       empId: 11111,
       beverage: "orange",
       qty: 1,
       date: "2019-11-30T15:48:32.840Z"
     };
+
     const actualValue = utils.changeObjectToString(message, transaction);
+
     let expectedValue = "Employee ID,Beverage,Quantity,Date\n";
     expectedValue += "11111,orange,1,2019-11-30T15:48:32.840Z\n";
+
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 });
@@ -66,16 +76,21 @@ describe("changeObjectToString ", function() {
 describe("isEmpIdMatched", function() {
   it("should return true if empId is matched", function() {
     const empId = 11111;
+
     transaction = {
       empId: 11111,
       beverage: "orange",
       qty: 1,
       date: "2019-11-30T15:48:32.840Z"
     };
+
     const actualValue = utils.isEmpIdMatched(empId)(transaction);
+
     const expectedValue = true;
+
     assert.strictEqual(actualValue, expectedValue);
   });
+
   it("should return false if empId is not matched", function() {
     const empId = 11111;
     transaction = {
@@ -84,8 +99,11 @@ describe("isEmpIdMatched", function() {
       qty: 1,
       date: "2019-11-30T15:48:32.840Z"
     };
+
     const actualValue = utils.isEmpIdMatched(empId)(transaction);
+
     const expectedValue = false;
+
     assert.strictEqual(actualValue, expectedValue);
   });
 });
@@ -93,14 +111,18 @@ describe("isEmpIdMatched", function() {
 describe("countJuice", function() {
   it("should count total juices", function() {
     const totalJuice = 0;
+
     const transaction = {
       empId: 11121,
       beverage: "orange",
       qty: 1,
       date: "2019-11-30T15:48:32.840Z"
     };
+
     const actualValue = utils.countJuice(totalJuice, transaction);
+
     const expectedValue = 1;
+
     assert.strictEqual(actualValue, expectedValue);
   });
 });
@@ -108,26 +130,33 @@ describe("countJuice", function() {
 describe("isDateIdMatched", function() {
   it("should return true if date is matched", function() {
     const date = "2019-12-02";
+
     transaction = {
       empId: 11111,
       beverage: "orange",
       qty: 1,
       date: "2019-12-02T09:06:34.253Z"
     };
+
     const actualValue = utils.isDateMatched(date)(transaction);
     const expectedValue = true;
     assert.strictEqual(actualValue, expectedValue);
   });
+
   it("should return true if date is not matched", function() {
     const date = "2019-12-03";
+
     transaction = {
       empId: 11111,
       beverage: "orange",
       qty: 1,
       date: "2019-12-02T09:06:34.253Z"
     };
+
     const actualValue = utils.isDateMatched(date)(transaction);
+
     const expectedValue = false;
+
     assert.strictEqual(actualValue, expectedValue);
   });
 });
@@ -135,27 +164,35 @@ describe("isDateIdMatched", function() {
 describe("isBeveragedMatched", function() {
   it("should return true if beverage is matched", function() {
     let beverage = "orange";
+
     transaction = {
       empId: 11111,
       beverage: "orange",
       qty: 1,
       date: "2019-11-30T15:48:32.840Z"
     };
+
     const actualValue = utils.isBeverageMatched(beverage)(transaction);
+
     const expectedValue = true;
+
     assert.strictEqual(actualValue, expectedValue);
   });
 
   it("should return false if beverage is not matched", function() {
     const beverage = "pineapple";
+
     transaction = {
       empId: 11121,
       beverage: "orange",
       qty: 1,
       date: "2019-11-30T15:48:32.840Z"
     };
+
     const actualValue = utils.isBeverageMatched(beverage)(transaction);
+
     const expectedValue = false;
+
     assert.strictEqual(actualValue, expectedValue);
   });
 });

@@ -41,10 +41,12 @@ const isDateMatched = function(date) {
   };
 };
 
-exports.readTransactionData = readTransactionData;
-exports.writeTransactionData = writeTransactionData;
-exports.changeObjectToString = changeObjectToString;
-exports.isEmpIdMatched = isEmpIdMatched;
-exports.isDateMatched = isDateMatched;
-exports.isBeverageMatched = isBeverageMatched;
-exports.countJuice = countJuice;
+module.exports = {
+  readTransactionData,
+  writeTransactionData,
+  changeObjectToString,
+  isEmpIdMatched,
+  isDateMatched,
+  isBeverageMatched,
+  countJuice
+};
